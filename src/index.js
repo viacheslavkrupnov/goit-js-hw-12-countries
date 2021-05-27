@@ -28,7 +28,7 @@ function clearSearch() {
 function outputInfo(typeInfo, text) {
   typeInfo({
     text: `${text}`,
-    delay: 1200,
+    delay: 1500,
   });
 }
 
