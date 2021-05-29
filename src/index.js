@@ -33,8 +33,10 @@ function outputInfo(typeInfo, text) {
 }
 
 function markupResult(countries) {
+  
   if (countries.length === 1) {
     clearSearch();
+    refs.input.value = '';
     markupContries(countryTpl, countries);
   } else if (countries.length > 1 && countries.length <= 10) {
     clearSearch();
@@ -50,11 +52,18 @@ function markupResult(countries) {
 }
 
 function onSearch() {
+
   clearSearch();
-  searchedCountry = refs.input.value;
+  searchedCountry = refs.input.value.trim();
+  if (!searchedCountry.trim()) {
+    return
+  }
   countriesApi(searchedCountry)
     .then(markupResult)
     .catch(err => console.log(err));
 }
 
 refs.input.addEventListener('input', debounce(onSearch, 500));
+
+
+
